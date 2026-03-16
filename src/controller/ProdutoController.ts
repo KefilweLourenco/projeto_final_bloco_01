@@ -64,4 +64,22 @@ export class ProdutoController implements ProdutoRepository {
 
         return null;
     }
+    public buscarPorTitulo(titulo: string): void {
+
+   let encontrado = false;
+
+   for (let produto of this.listaProdutos) {
+
+      if (produto.titulo.toLowerCase().includes(titulo.toLowerCase())) {
+         produto.visualizar();
+         encontrado = true;
+      }
+
+   }
+
+   if (!encontrado) {
+      console.log("\nNenhum livro encontrado com esse título.");
+   }
+
+   }
 }

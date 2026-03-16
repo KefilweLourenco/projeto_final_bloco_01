@@ -7,13 +7,6 @@ export function main() {
  
 let produtos: ProdutoController = new ProdutoController();
 
-/*Linhas testes
-const livrofisico: LivroFisico =  new LivroFisico(1, 1, "JavaScript O guia definitivo 7ed.", "David Flanagan", 204.40, 704);
-livrofisico.visualizar();
-
-const ebook: Ebook = new Ebook(2, 2, "Lógica de Programação e Algoritmos com JavaScript: uma introdução à Programação de Computadores com exemplos e Exercícios Para Iniciante", "Edécio Fernando Iepsen", 352, 4.60);
-ebook.visualizar(); */
-
 let opcao, id, tipo, paginas: number;
 let tamanhoArquivo, preco: number;
 let titulo, autor: string;
@@ -46,14 +39,15 @@ console.log("\nCriar Produtos\n");
         console.log("3 - Buscar Livro por ID"                );
         console.log("4 - Atualizar Livro"                    );
         console.log("5 - Deletar Livro"                      );
-        console.log("6 - Sair"                               );
+        console.log("6 - Buscar Livro por Título"            );
+        console.log("7 - Sair"                               );
         console.log("                                       ");
         console.log("***************************************");
 
         console.log("Entre com a opção desejada: ");
         opcao = readlinesync.questionInt("");
 
-        if (opcao == 6) {
+        if (opcao == 7) {
             console.log("\nLivraria Digital Generation - leitura para todo mundo!");
             sobre();
             process.exit(0);
@@ -79,17 +73,13 @@ console.log("\nCriar Produtos\n");
                     case 1:
                         console.log("Digite o Número de páginas: ");
                         paginas = readlinesync.questionInt("");
-                        produtos.cadastrar(
-                            new LivroFisico(produtos.gerarId(), tipo, titulo, autor, preco, paginas)
-                        );
+                        produtos.cadastrar(new LivroFisico(produtos.gerarId(), tipo, titulo, autor, preco, paginas));
                         break;
 
                     case 2:
                         console.log("Digite o Tamanho do arquivo (MB): ");
                         tamanhoArquivo = readlinesync.questionFloat("");
-                        produtos.cadastrar(
-                            new Ebook(produtos.gerarId(), tipo, titulo, autor, preco, tamanhoArquivo)
-                        );
+                        produtos.cadastrar(new Ebook(produtos.gerarId(), tipo, titulo, autor, preco, tamanhoArquivo));
                         break;
                 }
 
@@ -138,17 +128,13 @@ console.log("\nCriar Produtos\n");
                         case 1:
                             console.log("Digite o Número de páginas: ");
                             paginas = readlinesync.questionInt("");
-                            produtos.atualizar(
-                                new LivroFisico(id, tipo, titulo, autor, preco, paginas)
-                            );
+                            produtos.atualizar(new LivroFisico(id, tipo, titulo, autor, preco, paginas));
                             break;
 
                         case 2:
                             console.log("Digite o Tamanho do arquivo (MB): ");
                             tamanhoArquivo = readlinesync.questionFloat("");
-                            produtos.atualizar(
-                                new Ebook(id, tipo, titulo, autor, preco, tamanhoArquivo)
-                            );
+                            produtos.atualizar(new Ebook(id, tipo, titulo, autor, preco, tamanhoArquivo));
                             break;
                     }
 
@@ -169,6 +155,17 @@ console.log("\nCriar Produtos\n");
                 keyPress();
                 break;
 
+            case 6:
+                console.log("\n\nBuscar Livro por Título\n");
+
+                console.log("Digite o título do livro: ");
+                let tituloBusca = readlinesync.question("");
+
+                produtos.buscarPorTitulo(tituloBusca);
+
+                keyPress();
+                break;
+
             default:
                 console.log("\nOpção inválida! Tente novamente.\n");
 
@@ -180,9 +177,9 @@ console.log("\nCriar Produtos\n");
 
 function sobre(): void {
     console.log("\n*****************************************************");
-    console.log("Projeto Desenvolvido por: Kefilwe Lourenço");
-    console.log("Generation Brasil");
-    console.log("*****************************************************");
+    console.log("Projeto Desenvolvido por: Kefilwe Lourenço"             );
+    console.log("Generation Brasil"                                      );
+    console.log("*******************************************************");
 }
 
 function keyPress(): void {

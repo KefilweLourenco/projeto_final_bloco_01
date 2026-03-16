@@ -1,6 +1,17 @@
 import readlinesync = require("readline-sync");
+import { LivroFisico } from "./src/model/LivroFisico";
+import { Ebook } from "./src/model/Ebook";
+
+export function main() {
 
 let opcao: number; 
+
+//Linhas testes
+const livrofisico: LivroFisico =  new LivroFisico(1, 1, "JavaScript O guia definitivo 7ed.", "David Flanagan", 204.40, 704);
+livrofisico.visualizar();
+
+const ebook: Ebook = new Ebook(2, 2, "Lógica de Programação e Algoritmos com JavaScript: uma introdução à Programação de Computadores com exemplos e Exercícios Para Iniciante", "Edécio Fernando Iepsen", 352, 4.60);
+ebook.visualizar();
 
 while (true) {
 
@@ -52,3 +63,6 @@ while (true) {
     }
 
 }
+}
+
+main();

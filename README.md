@@ -1,27 +1,53 @@
-# Projeto Final Bloco 01 - Sistema de E-commerce (Console)
+# 📚 Projeto Final Bloco 01 – Livraria Digital Generation (Console)
 
-Este projeto foi desenvolvido como meu primeiro projeto individual no bootcamp da Generation Brasil, com o objetivo de consolidar os fundamentos da programação.
+Este projeto foi desenvolvido como parte do bootcamp de **Desenvolvimento Fullstack JavaScript da Generation Brasil**, sendo meu primeiro projeto individual dentro do programa.
 
-A proposta consistia na construção de um sistema de e-commerce via console, aplicando conceitos essenciais como:
+A proposta foi criar um sistema de livraria digital para a Generation, simulando um catálogo simples de livros físicos e e-books em um ambiente de console.
 
-- Entrada e saída de dados
-- Laços condicionais e de repetição
-- Métodos e modificadores de acesso
-- Programação orientada a objetos (POO)
-- Abstração, herança, polimorfismo e sobrecarga
-- Classes abstratas e interfaces
-- Collections
-- Tratamento de exceptions
+O sistema funciona como um menu interativo, onde o usuário pode navegar e verificar se um livro está disponível, além de realizar operações básicas de gerenciamento de catálogo.
 
-O sistema conta com um menu interativo que permite executar as funcionalidades propostas, simulando operações básicas de um e-commerce.
+---
+
+## 💡 Proposta do Projeto
+
+Pensando em uma solução simples e acessível, desenvolvi um sistema que permite:
+
+- cadastrar livros (físicos e e-books)
+- listar todos os livros disponíveis
+- buscar livros por ID ou título
+- atualizar informações
+- remover livros do catálogo
+
+A ideia central foi simular um sistema básico de e-commerce educacional, onde usuários podem consultar a disponibilidade de livros dentro de um catálogo digital.
 
 ## 📈 Evolução
 
-Após a avaliação do projeto, realizei alguns ajustes e melhorias no código com o objetivo de:
+Após a avaliação do projeto no bootcamp da Generation Brasil, realizei melhorias com base no feedback recebido, com foco em:
 
-- melhorar a organização das classes
-- tornar o código mais legível
-- corrigir pequenos pontos identificados no feedback
-- reforçar boas práticas de programação
+- melhor organização das classes  
+- aumento da legibilidade do código  
+- ajustes em funcionalidades do sistema  
+- aplicação mais consistente de boas práticas de programação  
 
-Este projeto representa um marco importante na minha formação, sendo a base prática dos primeiros conceitos que venho desenvolvendo como desenvolvedor.
+Esse processo foi importante para consolidar meu aprendizado e fortalecer minha base em desenvolvimento.
+
+---
+
+## 🚀 Tecnologias utilizadas
+
+<p align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="40" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" width="40" />
+</p>
+
+- TypeScript  
+- Node.js  
+- readline-sync  
+
+---
+
+## ▶️ Como executar o projeto
+
+```bash
+npm install
+ts-node Menu.ts

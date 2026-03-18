@@ -4,187 +4,155 @@ import { Ebook } from "./src/model/Ebook";
 import { ProdutoController } from "./src/controller/ProdutoController";
 
 export function main() {
- 
-let produtos: ProdutoController = new ProdutoController();
+    let produtos: ProdutoController = new ProdutoController();
 
-let opcao, id, tipo, paginas: number;
-let tamanhoArquivo, preco: number;
-let titulo, autor: string;
-const tiposLivros = ['Livro Físico', 'Ebook'];
+    let opcao: number;
+    let id: number;
+    let tipo: number;
+    let paginas: number;
+    let tamanhoArquivo: number;
+    let preco: number;
+    let titulo: string;
+    let autor: string;
 
-console.log("\nCriar Produtos\n");
-
-    let lf1: LivroFisico = new LivroFisico(produtos.gerarId(), 1, "JavaScript O guia definitivo 7ed.", "David Flanagan", 204.40, 704);
-    produtos.cadastrar(lf1);
-
-    let lf2: LivroFisico = new LivroFisico(produtos.gerarId(), 1, "Entendendo Algoritmos", "Aditya Bhargava", 87.90, 264);
-    produtos.cadastrar(lf2);
-
-    let eb1: Ebook = new Ebook(produtos.gerarId(), 2, "Lógica de Programação e Algoritmos com JavaScript", "Edécio Fernando Iepsen", 352.00, 4.6);
-    produtos.cadastrar(eb1);
-
-    let eb2: Ebook = new Ebook(produtos.gerarId(), 2, "Pequeno Manual Antirracista", "Djamila Ribeiro", 29.90, 2.1);
-    produtos.cadastrar(eb2);
-
-    produtos.listarTodos();
+    const tiposLivros: Array<string> = ["Livro Fisico", "Ebook"];
 
     while (true) {
+        console.clear();
 
-        console.log("***************************************");
-        console.log("      LIVRARIA DIGITAL GENERATION      ");
-        console.log("***************************************");
+        console.log("***************************************************");
+        console.log("*      📚 LIVRARIA DIGITAL GENERATION 📚          *");
+        console.log("***************************************************");
+        console.log("* 1 - Cadastrar Livro                             *");
+        console.log("* 2 - Listar Livros                               *");
+        console.log("* 3 - Buscar Livro por ID                         *");
+        console.log("* 4 - Atualizar Livro                             *");
+        console.log("* 5 - Deletar Livro                               *");
+        console.log("* 6 - Buscar Livro por Título                     *");
+        console.log("* 7 - Sair                                        *");
+        console.log("***************************************************");
 
-        console.log("1 - Cadastrar Livro"                    );
-        console.log("2 - Listar Livros"                      );
-        console.log("3 - Buscar Livro por ID"                );
-        console.log("4 - Atualizar Livro"                    );
-        console.log("5 - Deletar Livro"                      );
-        console.log("6 - Buscar Livro por Título"            );
-        console.log("7 - Sair"                               );
-        console.log("                                       ");
-        console.log("***************************************");
-
-        console.log("Entre com a opção desejada: ");
-        opcao = readlinesync.questionInt("");
-
-        if (opcao == 7) {
-            console.log("\nLivraria Digital Generation - leitura para todo mundo!");
-            sobre();
-            process.exit(0);
-        }
+        opcao = readlinesync.questionInt("\nEntre com a opcao desejada: ");
 
         switch (opcao) {
             case 1:
-                console.log("\n\nCadastrar Livro\n");
+                console.log("\n📚 Cadastrar Livro\n");
 
-                console.log("Digite o Título do Livro: ");
-                titulo = readlinesync.question("");
-
-                console.log("Digite o Autor do Livro: ");
-                autor = readlinesync.question("");
+                titulo = readlinesync.question("Digite o título do Livro: ");
+                autor = readlinesync.question("Digite o autor do Livro: ");
 
                 console.log("\nDigite o tipo do Livro: ");
                 tipo = readlinesync.keyInSelect(tiposLivros, "", { cancel: false }) + 1;
 
-                console.log("\nDigite o Preço do Livro (R$): ");
-                preco = readlinesync.questionFloat("");
+                preco = readlinesync.questionFloat("\nDigite o preço do Livro (R$): ");
 
                 switch (tipo) {
                     case 1:
-                        console.log("Digite o Número de páginas: ");
-                        paginas = readlinesync.questionInt("");
-                        produtos.cadastrar(new LivroFisico(produtos.gerarId(), tipo, titulo, autor, preco, paginas));
+                        paginas = readlinesync.questionInt("Digite o número de páginas: ");
+                        produtos.cadastrar(
+                            new LivroFisico(produtos.gerarId(), tipo, titulo, autor, preco, paginas)
+                        );
+                        console.log("\nLivro físico cadastrado com sucesso!");
                         break;
 
                     case 2:
-                        console.log("Digite o Tamanho do arquivo (MB): ");
-                        tamanhoArquivo = readlinesync.questionFloat("");
-                        produtos.cadastrar(new Ebook(produtos.gerarId(), tipo, titulo, autor, preco, tamanhoArquivo));
+                        tamanhoArquivo = readlinesync.questionFloat("Digite o tamanho do arquivo (MB): ");
+                        produtos.cadastrar(
+                            new Ebook(produtos.gerarId(), tipo, titulo, autor, preco, tamanhoArquivo)
+                        );
+                        console.log("\nEbook cadastrado com sucesso!");
                         break;
                 }
 
-                keyPress();
+                pressioneEnter();
                 break;
 
             case 2:
-                console.log("\n\nListar todos os Livros\n");
+                console.log("\n📚 Listar todos os Livros\n");
                 produtos.listarTodos();
-
-                keyPress();
+                pressioneEnter();
                 break;
 
             case 3:
-                console.log("\n\nBuscar Livro por ID\n");
-
-                console.log("Digite o ID do Livro: ");
-                id = readlinesync.questionInt("");
+                console.log("\n📚 Buscar Livro por ID\n");
+                id = readlinesync.questionInt("Digite o ID do Livro: ");
                 produtos.procurarPorId(id);
-
-                keyPress();
+                pressioneEnter();
                 break;
 
             case 4:
-                console.log("\n\nAtualizar Dados do Livro\n");
+                console.log("\n📚 Atualizar Dados do Livro\n");
+                id = readlinesync.questionInt("Digite o ID do Livro: ");
 
-                console.log("Digite o ID do Livro: ");
-                id = readlinesync.questionInt("");
+                const produto = produtos.buscarNoArray(id);
 
-                let produto = produtos.buscarNoArray(id);
-
-                if (produto != null) {
-
-                    console.log("Digite o Título do Livro: ");
-                    titulo = readlinesync.question("");
-
-                    console.log("Digite o Autor do Livro: ");
-                    autor = readlinesync.question("");
+                if (produto !== null) {
+                    titulo = readlinesync.question("Digite o título do Livro: ");
+                    autor = readlinesync.question("Digite o autor do Livro: ");
+                    preco = readlinesync.questionFloat("\nDigite o preço do Livro (R$): ");
 
                     tipo = produto.tipo;
 
-                    console.log("\nDigite o Preço do Livro (R$): ");
-                    preco = readlinesync.questionFloat("");
-
                     switch (tipo) {
                         case 1:
-                            console.log("Digite o Número de páginas: ");
-                            paginas = readlinesync.questionInt("");
-                            produtos.atualizar(new LivroFisico(id, tipo, titulo, autor, preco, paginas));
+                            paginas = readlinesync.questionInt("Digite o número de páginas: ");
+                            produtos.atualizar(
+                                new LivroFisico(id, tipo, titulo, autor, preco, paginas)
+                            );
+                            console.log("\nLivro físico atualizado com sucesso!");
                             break;
 
                         case 2:
-                            console.log("Digite o Tamanho do arquivo (MB): ");
-                            tamanhoArquivo = readlinesync.questionFloat("");
-                            produtos.atualizar(new Ebook(id, tipo, titulo, autor, preco, tamanhoArquivo));
+                            tamanhoArquivo = readlinesync.questionFloat("Digite o tamanho do arquivo (MB): ");
+                            produtos.atualizar(
+                                new Ebook(id, tipo, titulo, autor, preco, tamanhoArquivo)
+                            );
+                            console.log("\nEbook atualizado com sucesso!");
                             break;
                     }
-
                 } else {
-                    console.log("\nO Livro de ID: " + id + " não foi encontrado!");
+                    console.log(`\nO Livro de ID ${id} não foi encontrado!`);
                 }
 
-                keyPress();
+                pressioneEnter();
                 break;
 
             case 5:
-                console.log("\n\nApagar Livro\n");
-
-                console.log("Digite o ID do Livro: ");
-                id = readlinesync.questionInt("");
+                console.log("\n📚 Apagar Livro\n");
+                id = readlinesync.questionInt("Digite o ID do Livro: ");
                 produtos.deletar(id);
-
-                keyPress();
+                pressioneEnter();
                 break;
 
             case 6:
-                console.log("\n\nBuscar Livro por Título\n");
-
-                console.log("Digite o título do livro: ");
-                let tituloBusca = readlinesync.question("");
-
+                console.log("\n📚 Buscar Livro por Título\n");
+                const tituloBusca = readlinesync.question("Digite o título do livro: ");
                 produtos.buscarPorTitulo(tituloBusca);
-
-                keyPress();
+                pressioneEnter();
                 break;
+
+            case 7:
+                console.log("\n📚 Livraria Digital Generation - leitura para todo mundo! 📚");
+                sobre();
+                process.exit(0);
 
             default:
                 console.log("\nOpção inválida! Tente novamente.\n");
-
-                keyPress();
+                pressioneEnter();
                 break;
         }
     }
 }
 
 function sobre(): void {
-    console.log("\n*****************************************************");
-    console.log("Projeto Desenvolvido por: Kefilwe Lourenço"             );
-    console.log("Generation Brasil"                                      );
-    console.log("*******************************************************");
+    console.log("\n***************************************************");
+    console.log("*  Projeto Desenvolvido por: Kefilwe Lourenço     *");
+    console.log("*  Generation Brasil                              *");
+    console.log("***************************************************");
 }
 
-function keyPress(): void {
-    console.log("\nPressione Enter para continuar...");
-    readlinesync.prompt();
+function pressioneEnter(): void {
+    readlinesync.question("\nPressione Enter para continuar...");
 }
 
 main();

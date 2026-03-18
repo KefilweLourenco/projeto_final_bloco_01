@@ -7,7 +7,7 @@ export class ProdutoController implements ProdutoRepository {
     id: number = 0;
 
     listarTodos(): void {
-        for(let produto of this.listaProdutos) {
+        for (let produto of this.listaProdutos) {
             produto.visualizar();
         }
     }
@@ -15,16 +15,15 @@ export class ProdutoController implements ProdutoRepository {
     procurarPorId(id: number): void {
         let buscaProduto = this.buscarNoArray(id);
 
-        if(buscaProduto != null) {
+        if (buscaProduto != null) {
             buscaProduto.visualizar();
-        }else
-            console.log("\nO produto de ID: " + id + "não foi encontrado!");
+        } else {
+            console.log("\nO produto de ID: " + id + " não foi encontrado!");
+        }
     }
 
     cadastrar(produto: Produto): void {
         this.listaProdutos.push(produto);
-        console.log("\nO produto de ID: " + produto.id +
-            " foi cadastrado com sucesso!");
     }
 
     atualizar(produto: Produto): void {
@@ -32,54 +31,49 @@ export class ProdutoController implements ProdutoRepository {
 
         if (buscaProduto != null) {
             this.listaProdutos[this.listaProdutos.indexOf(buscaProduto)] = produto;
-            console.log("\nO produto de ID: " + produto.id +
-                " foi atualizado com sucesso!");
-        }else
-            console.log("\nO produto de ID: " + produto.id +
-                " não foi encontrado!");
+            console.log("\nO produto de ID: " + produto.id + " foi atualizado com sucesso!");
+        } else {
+            console.log("\nO produto de ID: " + produto.id + " não foi encontrado!");
+        }
     }
-    
-    public deletar(id: number): void {
+
+    deletar(id: number): void {
         let buscaProduto = this.buscarNoArray(id);
 
         if (buscaProduto != null) {
             this.listaProdutos.splice(this.listaProdutos.indexOf(buscaProduto), 1);
-            console.log("\nO produto de ID: " + id +
-                " foi apagado com sucesso!");
-        }else
-            console.log("\nO produto de ID: " + id +
-                " não foi encontrado!");
+            console.log("\nO produto de ID: " + id + " foi apagado com sucesso!");
+        } else {
+            console.log("\nO produto de ID: " + id + " não foi encontrado!");
+        }
     }
 
     public gerarId(): number {
-        return ++ this.id;
+        return ++this.id;
     }
 
     public buscarNoArray(id: number): Produto | null {
-
         for (let produto of this.listaProdutos) {
-            if(produto.id === id)
+            if (produto.id === id) {
                 return produto;
+            }
         }
 
         return null;
     }
+
     public buscarPorTitulo(titulo: string): void {
+        let encontrado = false;
 
-   let encontrado = false;
+        for (let produto of this.listaProdutos) {
+            if (produto.titulo.toLowerCase().includes(titulo.toLowerCase())) {
+                produto.visualizar();
+                encontrado = true;
+            }
+        }
 
-   for (let produto of this.listaProdutos) {
-
-      if (produto.titulo.toLowerCase().includes(titulo.toLowerCase())) {
-         produto.visualizar();
-         encontrado = true;
-      }
-
-   }
-
-   if (!encontrado) {
-      console.log("\nNenhum livro encontrado com esse título.");
-   }
-
-   }
+        if (!encontrado) {
+            console.log("\nNenhum livro encontrado com esse título.");
+        }
+    }
 }
